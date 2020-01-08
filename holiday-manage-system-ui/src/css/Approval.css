@@ -1,0 +1,30 @@
+.approval-content {
+    background-color: rgb(243, 243, 243);
+}
+
+.approval-scrollable {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.approval-textarea {
+    border: 1px solid rgb(155, 155, 155);
+}
+
+.approval-textarea:focus {
+    border: 1px solid rgb(22,87, 175);
+}
+
+.approval-table {
+    border: 1px solid rgb(155, 155, 155);
+    // table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-spaces;
+}
+
+.approval-table-head {
+    background-color: rgb(255, 255, 255);
+}
+.approval-footer {
+    border-top:0px;
+}

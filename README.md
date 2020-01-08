@@ -1,2 +1,4 @@
-# react-holiday-manage-system
-A holiday manage system with react and springboot
+# 这是Phoebe的team中使用的Git。
+## 目前开发的项目是ICT中心使用的假期管理系统。
+
+Frank

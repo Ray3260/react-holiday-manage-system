@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <!--日志文件主目录：这里${user.home}为当前服务器用户主目录-->
+    <property name="LOG_HOME" value="${user.home}/hms-log"/>
+    <!--日志文件名称：这里spring.application.name表示工程名称-->
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+
+    <!--默认配置-->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!--配置控制台(Console)-->
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <!--配置日志文件(File)-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--设置策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件路径：这里%d{yyyyMMdd}表示按天分类日志-->
+            <FileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/${APP_NAME}.log</FileNamePattern>
+            <!--日志保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <!--设置格式-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <!-- 或者使用默认配置 -->
+            <!--<pattern>${FILE_LOG_PATTERN}</pattern>-->
+            <charset>utf8</charset>
+        </encoder>
+        <!--日志文件最大的大小-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    
+    <!--打印日志到glmapper-service.log的appender-->
+	<appender name="SERVICE"
+	          class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <append>true</append>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <FileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/service.log</FileNamePattern>
+	        <MaxHistory>30</MaxHistory>
+	    </rollingPolicy>
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+	        <charset>UTF-8</charset>
+	    </encoder>
+	    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+	</appender>
+	
+	<appender name="CONTROLLER"
+	          class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <append>true</append>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <FileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/controller.log</FileNamePattern>
+	        <MaxHistory>30</MaxHistory>
+	    </rollingPolicy>
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+	        <charset>UTF-8</charset>
+	    </encoder>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+        	<MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+	</appender>
+		
+	<appender name="SQL"
+	          class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <append>true</append>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <FileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/sql.log</FileNamePattern>
+	        <MaxHistory>30</MaxHistory>
+	    </rollingPolicy>
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+	        <charset>UTF-8</charset>
+	    </encoder>
+	    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+        	<MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+	</appender>
+	 <!-- 错误日志 appender ： 按照每天生成日志文件 -->
+	<appender name="ERROR-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <append>true</append>
+	    <!-- 过滤器，只记录 error 级别的日志 -->
+	    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+	        <level>error</level>
+	    </filter>
+	    <!-- 日志名称 -->
+	    <!-- 每天生成一个日志文件，保存30天的日志文件 -->
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <!--日志文件输出的文件名:按天回滚 daily -->
+	        <FileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/error.log</FileNamePattern>
+	        <!--日志文件保留天数-->
+	        <MaxHistory>30</MaxHistory>
+	    </rollingPolicy>
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+	        <!-- 编码 -->
+	        <charset>UTF-8</charset>
+	    </encoder>
+	    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+        	<MaxFileSize>100MB</MaxFileSize>
+        </triggeringPolicy>
+	</appender>
+	
+	
+	<!--此logger约束将.controller包下的日志输出到GLMAPPER-CONTROLLER，错误日志输出到GERROR-APPENDE；GERROR-APPENDE见上面-->
+	<logger name="com.neusoft.hms.webapp.common.controller" level="${logging.level}" additivity="false">
+	    <appender-ref ref="CONTROLLER" />
+	</logger>
+	
+	<!--此logger约束将.service包下的日志输出到GLMAPPER-SERVICE，错误日志输出到GERROR-APPENDE；GERROR-APPENDE见上面-->
+	<logger name="com.neusoft.hms.webapp.common.service" level="${logging.level}" additivity="false">
+	    <appender-ref ref="SERVICE" />
+	</logger>
+	
+	<root level="ERROR">
+	    <appender-ref ref="ERROR-APPENDER" />
+	</root>
+    
+
+    <!--root节点 全局日志级别，用来指定最基础的日志输出级别-->
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- 子节点向上级传递 局部日志级别-->
+    <logger level="WARN" name="org.springframework"/>
+    <logger level="WARN" name="com.netflix"/>
+    <logger level="DEBUG" name="org.hibernate.SQL">
+    	<appender-ref ref="SQL" />
+    </logger>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="TRACE" >
+        <level value="TRACE" />
+        <appender-ref ref="SQL" />
+    </logger>
+</configuration>

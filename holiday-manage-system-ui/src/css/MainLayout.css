@@ -1,0 +1,23 @@
+.hms-content {
+  display: inline-flex;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  flex-direction: column;
+}
+.hms-app {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+.hms-header {
+  width:100%;
+  /* position:fixed; */
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 0.5rem;
+  z-index: 4;
+}

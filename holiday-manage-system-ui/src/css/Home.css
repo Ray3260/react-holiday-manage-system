@@ -1,0 +1,61 @@
+/* Base Application Styles */
+
+#phoebe-index-photo{
+	-webkit-transform: translateY(-50%) rotate(45deg);
+	-ms-transform: translateY(-50%) rotate(45deg);
+	transform: translateY(-50%) rotate(45deg);
+	-webkit-transform-origin: center;
+	-ms-transform-origin: center;
+	transform-origin: center;
+  z-index: 3;
+}
+#phoebe-index-photo-ul{
+	height: 100%;
+	padding: 0px;
+	float: left;
+	animation: move 100s linear infinite normal;
+	animation-fill-mode: backwards;
+}
+@keyframes move{
+	0%{transform:translateX(0);}
+	100%{transform:translateX(-100%);}
+}
+#phoebe-index-photo-ul li{
+	height: 100%;
+	list-style: none;
+	padding: 5px;
+}
+#phoebe-index-photo-ul:hover{
+	animation-play-state: paused;
+}
+#phoebe-index-photo-ul img{
+	height: 100%;
+	border: 5px solid rgb(255, 255, 255);
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.5);
+	transition: transform 200ms;
+	-moz-transition: transform 200ms;	/* Firefox 4 */
+	-webkit-transition: transform 200ms;	/* Safari 和 Chrome */
+	-o-transition: transform 200ms;
+}
+#phoebe-index-photo-ul img:hover{
+	transform: scale(1.15);
+}
+
+.slideInRight {
+	animation-duration: 3s;
+}
+.fadeIn {
+	animation-delay: 1s;
+	animation-duration: 0.5s;
+}
+#img-info{
+	width:100%;
+	padding: 10px;
+	background-color: white;
+	border-radius: 20px;
+}
+#phoebe-index-Manifesto {
+	padding: 30px;
+}

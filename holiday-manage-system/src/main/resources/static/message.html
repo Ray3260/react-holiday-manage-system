@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>布局方案</title>
+</head>
+<body>
+<p th:text="#{message}">default message</p>
+</body>
+
+<script th:inline="javascript">
+    this.message = [[${message}]];
+    console.log(message);
+</script>
+</html>

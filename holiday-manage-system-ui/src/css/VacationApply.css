@@ -1,0 +1,16 @@
+.border-radius {
+    border-radius: 10px;
+    border: 1px double;
+}
+
+.fc-white {
+    color: white;
+}
+
+.bg-darkseagreen{
+    background-color: darkseagreen;
+}
+
+.textarea-resize-fix{
+    resize: none;
+}
